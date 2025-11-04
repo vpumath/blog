@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Veli-Pekka Uusluoto">
+<meta name="dcterms.date" content="2025-11-04">
 
-<title>About – Math blog</title>
+<title>Finding multiple mathematical models for same phenomenon is a good thing – Math blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +25,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a26421d82f52bf2d5e6476a19b1921eb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a26421d82f52bf2d5e6476a19b1921eb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,20 +83,49 @@ ul.task-list li input[type="checkbox"] {
   };
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Math blog</span>
     </a>
   </div>
@@ -104,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -115,29 +147,93 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Finding multiple mathematical models for same phenomenon is a good thing</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Mathematical modelling</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Veli-Pekka Uusluoto </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 4, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-jolla">
- <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">About</h1>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header><main class="content" id="quarto-document-content">
-<p>Hi there, welcome to my math blog! I will write about topics that I want either to (re)learn, I am curious about or I find fun. My style will be expository writing, but I will add some mathematical details and terms to the text to make things somewhat rigorous (sometimes I can go full technical details mode). I hope that this provides a general overview of the topics for larger audience and an opportunity to dive into more advanced mathematics for the readers that get interested about more advanced terms, concepts and theorems.</p>
-<p>I write this blog as a hobby, so this blog ain’t peer reviewed. I have limited amount of energy and time to proofread and double check calculations and theorems. Check details and reasoning also yourself and from another sources. I do my best to catch every mistake before posting, but some errors can slip through despite my effort.</p>
-<p>Hopefully you have enjoyable time while reading the blog! ^^</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
-</main>  
+
+
+
+<div class="hidden">
+
 </div>
- <!-- /main -->
+<p>Finding an unifying collection of equations and principles that would explain everything in the universe under single compatible framework would be a holy grail for physicists and mathematicians. With theory of everything, you could potentially predict everything which could be very useful. Let’s say that some day such theory is found. Are other models unneccesary after that? I would like to argue that knowing and finding other mathematical models is important even in that scenario (as it is useful to know/figure out multiple solutions for a problems and multiple proofs for a single theorem). I hope that with this I could show how to analyze mathematical models from human perspective: What would make mathematical models (or theories) easier or harder humans to learn/understand.</p>
+<section id="mechanistical-model-of-a-system." class="level1">
+<h1>“Mechanistical” model of a system.</h1>
+<p>There are many kind of mathematical models, but now I want discuss “mechanistical” models of dynamical systems. The following is one way to think about dynamical systems and the world: Mathematical model of dynamical system consist of environment/space <span class="math inline">\(\mathcal{E}\)</span>, building blocks <span class="math inline">\(\mathcal{B}\)</span> and dynamics between building blocks <span class="math inline">\(\mathcal{D}\)</span> and a mathematical model of a system could be thought as a triple <span class="math inline">\((\mathcal{E},\mathcal{B}, \mathcal{D})\)</span>. Additionally, when studying a system that evolve, the history of the system could be an important part of the model as it would describe why there are certain things in the system (this is one good idea in John H. Holland’s book Signals and boundaries).</p>
+<p>The environment part of the model will describe the spatial/environmental aspects of a system and how we think that system interacts with outside world. For example, boundary conditions describes often how system interacts with outside world. Building blocks describe smallest parts of the system that we want to include to the model. For example building blocks of system might be particles, field quantities or agents. Dynamics of the system tells how we think that the building blocks of a system will interact with each other.</p>
+<p>Many different models can describe a system equivalently or nearly equivalently and there isn’t an unique model for a system. This can be seen by a thought experiment: Let’s have a model that describe system to a desired precision. If we have another model that has smaller building blocks than previous model and we can build the bigger building blocks from smaller ones, then the models would produce nearly equivalent results in the scope of the model that has bigger building blocks. (Assuming that both models produce accurate results and models are applied in the scale where they are precise).</p>
+<p>In a way, we notice that some mathematical models form a hierarchial/nested structure. In mathematical modelling there is at least two questions: What is the smallest building block in the model and what part or pheomenon of a system we want to understand or be able to predict. Sometimes, we don’t need to understand or model every part of a system or what happens between events and sometimes we need to: If we want to predict where a golf ball lands after a swing, we don’t necessarily need to model the dynamics of atmosphere, but if we study where a frisbee lands, then we may need to, at least in some accuracy.</p>
+<p>This is true also while writing mathematics and proofs. We select what axioms we take for granted, what theorems and properties we assume to be known and what objects are already defined. Sometimes unpacking a proof with details can add clarity as it makes mental steps smaller. Sometimes it only confuses the reader as the journey takes longer and is messier. The above characterization can be little bit non-exact. Let me try to somehow formulate and “quantify” what I mean.</p>
+</section>
+<section id="tradeoffs-of-mathematical-models-and-human-limits." class="level1">
+<h1>Tradeoffs of mathematical models and human limits.</h1>
+<p>In every model, we have certain number of</p>
+<ul>
+<li>objects or building blocks,</li>
+<li>dynamical laws and principles,</li>
+<li>computational steps (computational load).</li>
+</ul>
+<p>When we look from human perspective, humans need to be capable to</p>
+<ul>
+<li>remember,</li>
+<li>understand,</li>
+<li>build and</li>
+<li>apply</li>
+</ul>
+<p>the model at some level if they want to get the joy of understanding. One of the most limiting factors of humans is memory capabilities. If we want to achieve intellectually elegant model, finding a model that minimizes the amount of building blocks, dynamics and computational load of the model, would the best bet. Of course, without sacrificing the precision and the prediction capabilities of the model.</p>
+<p>If we don’t care how enjoyable the model is and how much human understanding it provides about dynamical laws of the system, we can totally forget about minimizing the model since computer memory is cheap and we can go ham with it. For example, some AI models tend to be black box models (they work well, but we don’t know how and why they work).</p>
+<p>For both, the selection of smallest building blocks determines the resolution of model: Often we can’t get results or understanding about phenomena or dynamics of a systems that are smaller than our smallest building block. If the building block are selected to be too small, achieving knowledge about much larger pheomena or dynamics may be computationally too demanding or slow even for the best computer.</p>
+<p>When we return to think about a model that gives a theory of everything. I would guess that its smallest building blocks would be really small and thus computing anything about human size phenomena would be infeasible. Therefore, we need to continue to develop and learn different mathematical models. When learning or studying something, changing what one takes to be smallest building blocks can be really enlightening and make the journey easier.</p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
