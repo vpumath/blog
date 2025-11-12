@@ -10,7 +10,86 @@
 <atom:link href="https://vpumath.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>A math blog</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Mon, 03 Nov 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 11 Nov 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Bayes’ Theorem says that you are unlikely to have that rare disease that you googled</title>
+  <dc:creator>Veli-Pekka Uusluoto</dc:creator>
+  <link>https://vpumath.github.io/blog/posts/Bayes_theorem_application/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="hidden">
+
+</div>
+<p>I guess that everyone of us have sometimes googled their symptoms and found that they match to some horrible rare disease and then thought “I am screwed”. Now assuming that there is a disease that is lot more common with similar symptoms and those symptoms show up with similar probability, then Bayes’ Theorem says that you are unlikely to have that rare disease. Of course the probability is nonzero so if one is unlucky then one may have it, but the odds are often good that one doesn’t have the disease. I will write shortly about probabilty spaces, basic conditional probability, Bayes’ Theorem and its application to situation above.</p>
+<section id="basic-definition-of-a-probability-space" class="level1">
+<h1>Basic definition of a probability space</h1>
+<p>Probability space is a triple <img src="https://latex.codecogs.com/png.latex?(%5COmega,%20%5Cmathcal%7BF%7D,%5Cmathbb%7BP%7D)">. The set <img src="https://latex.codecogs.com/png.latex?%5COmega"> is called sample space, <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D"> is a sigma-algebra whose elements are often called events and <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D"> is a probability measure. The detailed explanation what these are and what are their properties requires many pages of measure theory and we are not doing it here now, but here is a “short” version what these are.</p>
+<p>When we study or model situations where is a discrete number of outcomes (or states of a system), then the sample space <img src="https://latex.codecogs.com/png.latex?%5COmega"> is a set that contains those outcomes. For example, if we study a dice roll, there are six outcomes that can happen <img src="https://latex.codecogs.com/png.latex?1">,<img src="https://latex.codecogs.com/png.latex?2">,<img src="https://latex.codecogs.com/png.latex?3">,<img src="https://latex.codecogs.com/png.latex?4">,<img src="https://latex.codecogs.com/png.latex?5"> and <img src="https://latex.codecogs.com/png.latex?6">. Then we can take the sample space <img src="https://latex.codecogs.com/png.latex?%5COmega"> to be the set <img src="https://latex.codecogs.com/png.latex?%5C%7B1,2,3,4,5,6%5C%7D">. Similarly if we have countably infinite amount of outcomes, then the sample space’s elements are those outcomes.</p>
+<p>When the situation’s number of outcomes (or states of the system) is uncountably infinite, it may be not even appropriate to try form explictly the sample space. For example if we are modeling temperature of a room, we don’t want to try to specify what an element of <img src="https://latex.codecogs.com/png.latex?%5COmega"> looks like or what is contained in <img src="https://latex.codecogs.com/png.latex?%5COmega">. Often, we just write “let <img src="https://latex.codecogs.com/png.latex?%5Comega%20%5Cin%20%5COmega">” and continue from that (in those cases, we are more interested in the distributions of random variables which can be interpreted). Sometimes there is a natural model of <img src="https://latex.codecogs.com/png.latex?%5COmega"> in uncountably infinite case. For example when studying game of darts, a dartboard can be modeled as an union of a two dimensional disk and one point that represents misses (I guess that latter detail tells everything about my darts skills). Even in this case, if we assume the tip of the dart to hit a single point in the board, the probability to hit certain point in the disk is zero. So it doesn’t make sense to study elements of sample space <img src="https://latex.codecogs.com/png.latex?%5COmega"> individually (with the exception of that one additional point that represent misses).</p>
+<p>A probability measure is a function <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D:%20%5Cmathcal%7BF%7D%20%5Cto%20%5B0,1%5D"> with properties that we require it to have:</p>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5COmega)%20=%201">.</li>
+<li>If we have countably many sets <img src="https://latex.codecogs.com/png.latex?A_n%20%5Cin%20%5Cmathcal%7BF%7D"> that are disjoint, then the following holds <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cbigcup_%7Bn=1%7D%5E%5Cinfty%20A_n)%20=%20%5Csum%5Climits_%7Bn=1%7D%5E%5Cinfty%20%5Cmathbb%7BP%7D(A_n)">. So if we calculate the probability of union countably many disjoint sets, then the result is a sum of individual probabilities.</li>
+</ul>
+<p>So a probability measure takes some set <img src="https://latex.codecogs.com/png.latex?A"> (that belongs to <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D">) and gives it a number between <img src="https://latex.codecogs.com/png.latex?0"> and <img src="https://latex.codecogs.com/png.latex?1"> which we call the probability of event <img src="https://latex.codecogs.com/png.latex?A"> and denote it by <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(A)">. The probability measure will behave nicely with disjoint sets (events) and the probability of whole sample space <img src="https://latex.codecogs.com/png.latex?%5COmega"> is <img src="https://latex.codecogs.com/png.latex?1">.</p>
+<p>A sigma-algebra <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D"> is a collection of sets of <img src="https://latex.codecogs.com/png.latex?%5COmega"> that has following three properties:</p>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%5COmega%20%5Cin%20%5Cmathcal%7BF%7D"></li>
+<li>If <img src="https://latex.codecogs.com/png.latex?A"> belongs to <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D">, then its compliment <img src="https://latex.codecogs.com/png.latex?A%5Ec"> belongs also to <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D">, so <img src="https://latex.codecogs.com/png.latex?A%20%5Cin%20%5Cmathcal%7BF%7D%20%5Cimplies%20A%5Ec%20%5Cin%20%5Cmathcal%7BF%7D">.</li>
+<li>Countable union of sets of <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D"> is still in <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D">. If <img src="https://latex.codecogs.com/png.latex?A_n%20%5Cin%20%5Cmathcal%7BF%7D"> for <img src="https://latex.codecogs.com/png.latex?n%20%5Cin%20%5Cmathbb%7BN%7D">, then <img src="https://latex.codecogs.com/png.latex?%5Cbigcup_%7Bn=1%7D%5E%5Cinfty%20A_n%20%5Cin%20%5Cmathcal%7BF%7D">.</li>
+</ul>
+<p>One can think sigma-algebra as a collection of events that we may observe or measure from the situation and the collection of sets have mathematical properties that makes things to work from measure theoretic point of view and makes measure theorists almost surely happy (hopefully). For countable sample spaces we can select the power set <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BP%7D(%5COmega)"> (the collection of every subset of <img src="https://latex.codecogs.com/png.latex?%5COmega">) to be our sigma-algebra, but when we are dealing with uncountable sets, we can’t use the power set since it would break things from measure theoretic point of view.</p>
+</section>
+<section id="basic-conditional-probabiliiy" class="level1">
+<h1>Basic conditional probabiliiy</h1>
+<p>Imagine that we are in a treasure island and we are given a map <img src="https://latex.codecogs.com/png.latex?M%20%5Csubset%20%5Cmathbb%7BR%7D%5E2"> of the island. We have thought where the treasure might be and formed a probability measure <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D"> (and suitable sigma-algebra <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D">) that represent our guesses (in practice this would be written via a probability density function). We start our search and have concluded that the treasure can’t be anywhere but in the subset <img src="https://latex.codecogs.com/png.latex?B"> of the map.</p>
+<p>How we could update our probability measure function about our believes? The easiest way to update our believe is to form a new probability space with the set <img src="https://latex.codecogs.com/png.latex?B"> as the building block. So <img src="https://latex.codecogs.com/png.latex?B"> is our new sample space and we can form a new sigma-algebra by taking intersection of every set of <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BF%7D"> with <img src="https://latex.codecogs.com/png.latex?B">, so the new sigma-algebra <img src="https://latex.codecogs.com/png.latex?%5Ctilde%7B%5Cmathcal%7BF%7D%7D"> is given by <img src="https://latex.codecogs.com/png.latex?%5Ctilde%7B%5Cmathcal%7BF%7D%7D%20=%20%5Cmathcal%7BF%7D%20%5Ccap%20B">. We can form a new probability measure <img src="https://latex.codecogs.com/png.latex?%5Ctilde%7B%5Cmathbb%7BP%7D%7D"> by same trick <img src="https://latex.codecogs.com/png.latex?%5Ctilde%7B%5Cmathbb%7BP%7D%7D(A)%20=%20%5Cmathbb%7BP%7D(A%20%5Ccap%20B)">. Everything is fine now, right??? Oh hell no! Remember the stuff that we wanted our probability measure to fulfill? One of those requirement was the condition <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5COmega)%20=%201">. For new probability measure we have <img src="https://latex.codecogs.com/png.latex?%5Ctilde%7B%5Cmathbb%7BP%7D%7D(B)%20=%20%5Cmathbb%7BP%7D(B%20%5Ccap%20B)%20=%20%5Cmathbb%7BP%7D(B)"> which isn’t always <img src="https://latex.codecogs.com/png.latex?1">. This is a problem, but we can solve this by normalization. We divide the expression by <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(B)"> and then everything works. This kind of probability is called conditional probability and is denoted usually as follows</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cmathbb%7BP%7D(A%7CB)%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D(A%20%5Ccap%20B)%7D%7B%5Cmathbb%7BP%7D(B)%7D%20"></p>
+<p>and we assume that we have <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(B)%20%5Cneq%200"> to this to be well defined. This gives the probabilty of event <img src="https://latex.codecogs.com/png.latex?A"> under the condition that we know that random event belongs to the set <img src="https://latex.codecogs.com/png.latex?B">. Notice that conditional probability only scales the probability by a constant and thus geometric/proportional properties of probability measure within the set <img src="https://latex.codecogs.com/png.latex?B"> are almost the same (geometry of probability density function doesn’t change). There are more advanced conditional probability concepts as well, but we are not hopping into them, now.</p>
+</section>
+<section id="law-of-total-probability" class="level1">
+<h1>Law of total probability</h1>
+<p>To another concept, a partition of a set. A partition of a set <img src="https://latex.codecogs.com/png.latex?X"> is a collection <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BC%7D"> of nonempty sets of <img src="https://latex.codecogs.com/png.latex?X"> with following two properties: Sets are disjoint, so when <img src="https://latex.codecogs.com/png.latex?A,B%20%5Cin%20%5Cmathcal%7BC%7D"> and <img src="https://latex.codecogs.com/png.latex?A%20%5Cneq%20B"> we have <img src="https://latex.codecogs.com/png.latex?A%20%5Ccap%20B%20=%20%5Cemptyset">. Secondly the set <img src="https://latex.codecogs.com/png.latex?X"> is a union of the sets in the collection, so <img src="https://latex.codecogs.com/png.latex?X%20=%20%5Cbigcup_%7BA%20%5Cin%20%5Cmathcal%7BC%7D%7D%20A">.</p>
+<p>We are usually interested in finite partitions of sets or something as easy to handle. Assume now that we have a partition of a set <img src="https://latex.codecogs.com/png.latex?%5COmega"> into finite number of sets <img src="https://latex.codecogs.com/png.latex?A_1,A_2,%5Cdots,%20A_n">. Now we can calculate probability of <img src="https://latex.codecogs.com/png.latex?B"> with help of that partition as follows</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cmathbb%7BP%7D(B)%20=%20%5Cmathbb%7BP%7D(B%20%5Ccap%20%5COmega)%20=%20%5Cmathbb%7BP%7D(B%20%5Ccap%20(%5Cbigcup_%7Bk=1%7D%5En%20A_k))%20=%20%5Cmathbb%7BP%7D(%5Cbigcup_%7Bk=1%7D%5En%20(B%20%5Ccap%20A_k))%20=%20%5Csum_%7Bk=1%7D%5En%20%5Cmathbb%7BP%7D(B%20%5Ccap%20A_k)%20"></p>
+<p>The last equality came from the fact that the sets <img src="https://latex.codecogs.com/png.latex?A_k"> are disjoint. When we notice that we can calculate the probability of intersection of two sets with conditional probability as</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(A%20%5Ccap%20B)%20=%20%5Cmathbb%7BP%7D(B%20%7CA)%5Cmathbb%7BP%7D(A)%20=%20%5Cmathbb%7BP%7D(A%7CB)%5Cmathbb%7BP%7D(B)"></p>
+<p>we achieve following formula for probability of <img src="https://latex.codecogs.com/png.latex?B"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cmathbb%7BP%7D(B)%20=%20%5Csum_%7Bk=1%7D%5En%20%5Cmathbb%7BP%7D(B%7CA_k)%5Cmathbb%7BP%7D(A_k)">.</p>
+<p>This formula is called the law of total probability.</p>
+</section>
+<section id="bayes-theorem" class="level1">
+<h1>Bayes’ theorem</h1>
+<p>Assume that we have a partition of the sample space <img src="https://latex.codecogs.com/png.latex?%5COmega"> with sets <img src="https://latex.codecogs.com/png.latex?A_1,A_2,%5Cdots,%20A_n">. If we know that random event is in the set <img src="https://latex.codecogs.com/png.latex?B">, we can ask what is the probability that it belongs to set <img src="https://latex.codecogs.com/png.latex?A_k"> of the partition, so what is <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(A_k%20%7C%20B)">. By using the definition of conditional probability to that and write probability <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(A_k%20%5Ccap%20B)"> with help of conditional probability we achieve following equation</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cmathbb%7BP%7D(A_k%20%7C%20B)%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D(A_k%20%5Ccap%20B)%7D%7B%5Cmathbb%7BP%7D(B)%7D%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D(B%7CA_k)%5Cmathbb%7BP%7D(A_k)%7D%7B%5Cmathbb%7BP%7D(B)%7D."></p>
+<p>When we use the law of total probability to the denominator, we get following formula</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cmathbb%7BP%7D(A_k%20%7C%20B)%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D(B%7CA_k)%5Cmathbb%7BP%7D(A_k)%7D%7B%5Csum_%7Bi=1%7D%5En%20%5Cmathbb%7BP%7D(B%7CA_i)%5Cmathbb%7BP%7D(A_i)%7D.%20"></p>
+<p>which is the Bayes’ formula. With it we can calculate conditional probabilities easier if the probabilities <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(B%7CA_k)"> and <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(A_k)"> are easier to calculate, deduce or estimate.</p>
+</section>
+<section id="application-of-bayes-theorem-to-i-am-screwed-google-diagnosis" class="level1">
+<h1>Application of Bayes’ Theorem to “I am screwed” google diagnosis</h1>
+<p>Assume that one has symptoms <img src="https://latex.codecogs.com/png.latex?S"> and there is a disease <img src="https://latex.codecogs.com/png.latex?D_1"> which is quite common and some disease <img src="https://latex.codecogs.com/png.latex?D_2"> which is quite rare. Furthermore, assume that both diseases produces symptoms <img src="https://latex.codecogs.com/png.latex?S"> with similar probabilities so <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cmathbb%7BP%7D(S%7CD_1)%7D%7B%20%5Cmathbb%7BP%7D(S%7CD_2)%7D%20%20%5Capprox%201">. We can calculate the probability of having disease <img src="https://latex.codecogs.com/png.latex?D_2"> when symptoms <img src="https://latex.codecogs.com/png.latex?S"> are present with Bayes’ formula</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cmathbb%7BP%7D(D_2%20%7CS)%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D(S%7CD_2)%5Cmathbb%7BP%7D(D_2)%7D%7B%20%5Cmathbb%7BP%7D(S%7CD_1)%5Cmathbb%7BP%7D(D_1)%20+%20%5Cmathbb%7BP%7D(S%7CD_2)%5Cmathbb%7BP%7D(D_2)%7D."></p>
+<p>when we use elementary trick <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Ba%7D%7Bb%7D%20=%20%5Cfrac%7B1%7D%7B%5Cfrac%7Bb%7D%7Ba%7D%7D"> we obtain the following approximation</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cmathbb%7BP%7D(D_2%20%7CS)%20=%20%5Cfrac%7B1%7D%7B%5Cfrac%7B%5Cmathbb%7BP%7D(S%7CD_1)%5Cmathbb%7BP%7D(D_1)%7D%7B%5Cmathbb%7BP%7D(S%7CD_2)%5Cmathbb%7BP%7D(D_2)%7D%20+%201%20%7D%20%5Capprox%20%5Cfrac%7B1%7D%7B%20%5Cfrac%7B%5Cmathbb%7BP%7D(D_1)%7D%7B%5Cmathbb%7BP%7D(D_2)%7D%20+%201%7D"></p>
+<p>The quantity <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D)"> is called prevalence of disease and it tells how many are affected by the disease at particular point of time (the proportion of the affected population with respect to whole population). For example if the scale of prevalence of disease <img src="https://latex.codecogs.com/png.latex?D_1"> is <img src="https://latex.codecogs.com/png.latex?10%5E%7B-1%7D"> and the scale of prevalence of disease <img src="https://latex.codecogs.com/png.latex?D_2"> is <img src="https://latex.codecogs.com/png.latex?10%5E%7B-4%7D"> then our approximation gives an estimate</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cmathbb%7BP%7D(D_2%7C%20S)%20%5Capprox%20%5Cfrac%7B1%7D%7B1%20+%20%5Cfrac%7B10%5E%7B-1%7D%7D%7B10%5E%7B-4%7D%7D%7D%20=%20%5Cfrac%7B1%7D%7B1001%7D"></p>
+<p>for the probability. Which is a small probability with compared to “I am screwed” probability. This is only a way to estimate probabilities and should not be used as a conclusive deduction tool whether one has a disease or not.</p>
+<p>Many national healthcare providers have nowadays good websites that provide good information about symptoms/diseases and when to contact healthcare providers and what self-treatment options are there for something. If you are unsure if something needs medical attention, you can always contact your healthcare provider and ask if those symptoms requires attention of a medical professional. And of course in the case of medical emergency, the first thing to do is to contact the emergency medical services.</p>
+<p>I hope that you (re)learnt something about mathematics from this and this helps with stress while reading about symptoms from the internet or somewhere else. I also hope that you stay healthy!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Probability</category>
+  <guid>https://vpumath.github.io/blog/posts/Bayes_theorem_application/</guid>
+  <pubDate>Tue, 11 Nov 2025 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Finding multiple mathematical models for same phenomenon is a good thing</title>
   <dc:creator>Veli-Pekka Uusluoto</dc:creator>
@@ -151,14 +230,14 @@
 <p>Moreover, if the probability density function of <img src="https://latex.codecogs.com/png.latex?R"> for example is bounded, we can say that probability density function of <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BA_n%20-%20%5Cmathbb%7BE%7D(R)%7D%7B%5Cfrac%7B%5Csigma%7D%7B%5Csqrt%7Bn%7D%7D%7D"> converges pointwisely to the probability density function of the normal distribution <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(0,1)"> (the probability density function of <img src="https://latex.codecogs.com/png.latex?A_n"> will look like normal distribution at some point). This isn’t true for every random variable that fulfills the central limit theorem conditions, so we need to be delicate how we interpret the central limit theorem. Local limit theorems give conditions when the probability density function of <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BA_n%20-%20%5Cmathbb%7BE%7D(R)%7D%7B%5Cfrac%7B%5Csigma%7D%7B%5Csqrt%7Bn%7D%7D%7D"> converges pointwisely to the normal distribution <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(0,1)">. Additional information is available for example from <a href="https://mathoverflow.net/questions/5733/when-does-a-pointwise-clt-hold">here</a>, <a href="https://archive.org/details/gnedenko-kolmogorov-limit-distributions-for-sums-of-independent-random-variables/page/224/mode/2up">here</a> or from <a href="https://terrytao.wordpress.com/2015/11/19/275a-notes-5-variants-of-the-central-limit-theorem/">here</a>. (Not an expert on local limit theorems, so take my words with a grain of salt)</p>
 <p>If there were terms or stuff that were unfamiliar or confusing, you can skip them and focus on “when n grows, the probability distribution of the average <img src="https://latex.codecogs.com/png.latex?A_n"> starts to behave like it would be normal distribution <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmathbb%7BE%7D(R),%20%5Cfrac%7B%5Csigma%5E2%7D%7Bn%7D)">”. The exact way to handle technical details is a much longer story and we are not delving into it here. The most important observation is that the variance will decrease when <img src="https://latex.codecogs.com/png.latex?n"> grows. I think that the following interactive visualization is the best way to demonstrate how normal distribution look and how variance <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Csigma%5E2%7D%7Bn%7D"> affect it.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="106" data-source-offset="-1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 105;"><span id="cb1-106"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="105" data-source-offset="-1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 104;"><span id="cb1-105"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">square</span>(x){</span>
-<span id="cb1-107"></span>
-<span id="cb1-108">  <span class="cf" style="color: #003B4F;
+<span id="cb1-106"></span>
+<span id="cb1-107">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
@@ -166,9 +245,9 @@ background-color: null;
 font-style: inherit;">*</span>x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-109">}</span>
-<span id="cb1-110"></span>
-<span id="cb1-111"><span class="kw" style="color: #003B4F;
+<span id="cb1-108">}</span>
+<span id="cb1-109"></span>
+<span id="cb1-110"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
@@ -178,7 +257,7 @@ background-color: null;
 font-style: inherit;">,</span> b<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> h) {</span>
-<span id="cb1-112">  <span class="cf" style="color: #003B4F;
+<span id="cb1-111">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">if</span> (h <span class="op" style="color: #5E5E5E;
@@ -196,10 +275,10 @@ background-color: null;
 font-style: inherit;">Error</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Step size h must be positive'</span>)</span>
-<span id="cb1-113">  <span class="co" style="color: #5E5E5E;
+<span id="cb1-112">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Ensure we move in the right direction even if a &gt; b</span></span>
-<span id="cb1-114">  <span class="kw" style="color: #003B4F;
+<span id="cb1-113">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">const</span> forward <span class="op" style="color: #5E5E5E;
@@ -207,7 +286,7 @@ background-color: null;
 font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> b</span>
-<span id="cb1-115">  <span class="kw" style="color: #003B4F;
+<span id="cb1-114">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">const</span> step <span class="op" style="color: #5E5E5E;
@@ -219,17 +298,17 @@ background-color: null;
 font-style: inherit;">:</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span>h</span>
-<span id="cb1-116">  <span class="kw" style="color: #003B4F;
+<span id="cb1-115">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">const</span> result <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> []</span>
-<span id="cb1-117"></span>
-<span id="cb1-118">  <span class="co" style="color: #5E5E5E;
+<span id="cb1-116"></span>
+<span id="cb1-117">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Use a tolerance to avoid floating‑point drift (e.g., 0.1 + 0.2 ≠ 0.3 exactly)</span></span>
-<span id="cb1-119">  <span class="kw" style="color: #003B4F;
+<span id="cb1-118">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">const</span> eps <span class="op" style="color: #5E5E5E;
@@ -245,8 +324,8 @@ background-color: null;
 font-style: inherit;">/</span> <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1e12</span></span>
-<span id="cb1-120"></span>
-<span id="cb1-121">  <span class="cf" style="color: #003B4F;
+<span id="cb1-119"></span>
+<span id="cb1-120">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">for</span> (<span class="kw" style="color: #003B4F;
@@ -273,10 +352,10 @@ background-color: null;
 font-style: inherit;">;</span> v <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+=</span> step) {</span>
-<span id="cb1-122">    <span class="co" style="color: #5E5E5E;
+<span id="cb1-121">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Round to a reasonable number of decimal places to hide FP artefacts</span></span>
-<span id="cb1-123">    result<span class="op" style="color: #5E5E5E;
+<span id="cb1-122">    result<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -289,15 +368,15 @@ background-color: null;
 font-style: inherit;">toFixed</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">12</span>)))</span>
-<span id="cb1-124">  }</span>
-<span id="cb1-125"></span>
-<span id="cb1-126">  <span class="cf" style="color: #003B4F;
+<span id="cb1-123">  }</span>
+<span id="cb1-124"></span>
+<span id="cb1-125">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">return</span> result</span>
-<span id="cb1-127">}</span>
-<span id="cb1-128"></span>
-<span id="cb1-129">x <span class="op" style="color: #5E5E5E;
+<span id="cb1-126">}</span>
+<span id="cb1-127"></span>
+<span id="cb1-128">x <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -316,8 +395,8 @@ background-color: null;
 font-style: inherit;">0.1</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-130"></span>
-<span id="cb1-131">y <span class="op" style="color: #5E5E5E;
+<span id="cb1-129"></span>
+<span id="cb1-130">y <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> x<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -335,11 +414,11 @@ background-color: null;
 font-style: inherit;">,</span>variance))<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
+<span id="cb1-131"></span>
 <span id="cb1-132"></span>
 <span id="cb1-133"></span>
 <span id="cb1-134"></span>
-<span id="cb1-135"></span>
-<span id="cb1-136"><span class="kw" style="color: #003B4F;
+<span id="cb1-135"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
@@ -349,7 +428,7 @@ background-color: null;
 font-style: inherit;">,</span> mu<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> var_) {</span>
-<span id="cb1-137">  <span class="kw" style="color: #003B4F;
+<span id="cb1-136">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">const</span> sigma <span class="op" style="color: #5E5E5E;
@@ -363,7 +442,7 @@ background-color: null;
 font-style: inherit;">sqrt</span>(var_)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-138">  <span class="kw" style="color: #003B4F;
+<span id="cb1-137">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">const</span> coefficient <span class="op" style="color: #5E5E5E;
@@ -393,7 +472,7 @@ background-color: null;
 font-style: inherit;">PI</span>))<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-139">  <span class="kw" style="color: #003B4F;
+<span id="cb1-138">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">const</span> exponent <span class="op" style="color: #5E5E5E;
@@ -421,7 +500,7 @@ background-color: null;
 font-style: inherit;">*</span> var_)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-140">  <span class="cf" style="color: #003B4F;
+<span id="cb1-139">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">return</span> coefficient <span class="op" style="color: #5E5E5E;
@@ -435,25 +514,25 @@ background-color: null;
 font-style: inherit;">exp</span>(exponent)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-141">}</span>
+<span id="cb1-140">}</span>
+<span id="cb1-141"></span>
 <span id="cb1-142"></span>
-<span id="cb1-143"></span>
-<span id="cb1-144">Plot<span class="op" style="color: #5E5E5E;
+<span id="cb1-143">Plot<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">plot</span>({</span>
-<span id="cb1-145">  <span class="dt" style="color: #AD0000;
+<span id="cb1-144">  <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">marks</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> [</span>
-<span id="cb1-146">    Plot<span class="op" style="color: #5E5E5E;
+<span id="cb1-145">    Plot<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">line</span>(</span>
-<span id="cb1-147">      x<span class="op" style="color: #5E5E5E;
+<span id="cb1-146">      x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -475,7 +554,7 @@ background-color: null;
 font-style: inherit;">:</span> y[i]}))<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-148">      {<span class="dt" style="color: #AD0000;
+<span id="cb1-147">      {<span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -490,11 +569,11 @@ background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"y"</span>}</span>
-<span id="cb1-149">    )</span>
-<span id="cb1-150">  ]<span class="op" style="color: #5E5E5E;
+<span id="cb1-148">    )</span>
+<span id="cb1-149">  ]<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-151">  <span class="dt" style="color: #AD0000;
+<span id="cb1-150">  <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -507,7 +586,7 @@ background-color: null;
 font-style: inherit;">"X-axis"</span>}<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-152">  <span class="dt" style="color: #AD0000;
+<span id="cb1-151">  <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -518,7 +597,7 @@ background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Y-axis"</span>}</span>
-<span id="cb1-153">})</span></code></pre></div></div>
+<span id="cb1-152">})</span></code></pre></div></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -561,7 +640,7 @@ font-style: inherit;">"Y-axis"</span>}</span>
 </div>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="156" data-source-offset="-1054" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 155;"><span id="cb2-156">viewof mu <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="155" data-source-offset="-1054" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 154;"><span id="cb2-155">viewof mu <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -594,7 +673,7 @@ background-color: null;
 font-style: inherit;">1</span>})<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-157">viewof variance <span class="op" style="color: #5E5E5E;
+<span id="cb2-156">viewof variance <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
 background-color: null;
