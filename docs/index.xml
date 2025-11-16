@@ -10,7 +10,91 @@
 <atom:link href="https://vpumath.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>A math blog</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Tue, 11 Nov 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 15 Nov 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Analytically solvable single species population models part 1</title>
+  <dc:creator>Veli-Pekka Uusluoto</dc:creator>
+  <link>https://vpumath.github.io/blog/posts/Analytically_solvable_single_species_population_models_part_1/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="hidden">
+
+</div>
+<p>Mathematical biology is one of those topics that I want to learn so I will be writing about it. In this post, I will discuss shortly single species continuous population models that can be analytically solved. They may not have practical use cases nowadays anymore, but knowing what can be solved analytically is mathematically interesting and instructive topic.</p>
+<p>(There may be more mistakes and typos in this post since I have written this with little time and using my previous notes on the topic. I wanted to adjust my posting schedule to one post each Sunday and doing things this way I can move my posting schedule. I have checked that differential equations and solutions of the models are at least correct)</p>
+<p>The main mathematical tool that we use today is the following theorem.</p>
+<p><strong>Theorem 1:</strong> Let <img src="https://latex.codecogs.com/png.latex?f:%20%5Cmathbb%7BR%7D%5Cto%20%5Cmathbb%7BR%7D"> be a continuous function. The <img src="https://latex.codecogs.com/png.latex?C%5E1">-solutions (solutions that have continuous derivative) of differential equation <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7D%20y(t)%20=%20f(t)"> are in form of <img src="https://latex.codecogs.com/png.latex?y(t)%20=%20%5Cint_%7Bt_0%7D%5Et%20f(s)%20%5C,%20ds%20+%20C"> where <img src="https://latex.codecogs.com/png.latex?C"> is a number in <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BR%7D">.</p>
+<p><strong>Proof:</strong> By the Fundamental Theorem of Calculus we know that for the function <img src="https://latex.codecogs.com/png.latex?F(t)%20=%20%5Cint_%7Bt_0%7D%5Et%20f(s)%20%5C,%20ds"> we have <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7D%20F(t)%20=%20f(t)">. This shows one part of the theorem.</p>
+<p>Assume that there are two functions <img src="https://latex.codecogs.com/png.latex?y_1(t),%20y_2(t)"> that satisfy the differential equation <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7D%20y(t)%20=%20f(t)">. We can calculate that <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7D(y_1(t)-%20y_2(t))%20=%20f(t)%20-%20f(t)%20=%200">. So we are studying the solutions of <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7D%20u(t)%20=%200">. Only <img src="https://latex.codecogs.com/png.latex?C%5E1">-solutions of that equations are the constant functions <img src="https://latex.codecogs.com/png.latex?u(t)%20=%20C"> where <img src="https://latex.codecogs.com/png.latex?C%20%5Cin%20%5Cmathbb%7BR%7D">. This can be seen by assuming the opposite and then using the mean value theorem to find a point where <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7Du(t)%20%5Cneq%200">. So we can conclude that every <img src="https://latex.codecogs.com/png.latex?C%5E1">-solution is form of <img src="https://latex.codecogs.com/png.latex?y(t)%20=%20%5Cint_%7Bt_0%7D%5Et%20f(s)%20%5C,%20ds%20+%20C"> where <img src="https://latex.codecogs.com/png.latex?C%20%5Cin%20%5Cmathbb%7BR%7D">.</p>
+<section id="population-models" class="level1">
+<h1>Population models</h1>
+<p>In general, population change of some species in certain area will be determined by following rule</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%20%20%5Cmathrm%7Bpopulation%20~%20change%7D%20=%20%5Cmathrm%7Bbirths%7D%20-%20%5Cmathrm%7Bdeaths%7D%20+%20%5Cmathrm%7Bmigration%7D.%20"></p>
+<p>This is the only way that population size can change. We can model populations with continuous or discrete functions or combination of those. We start by studying continuous population models that do not have a delay factors, i.e.&nbsp;population change is determined by population at current time.</p>
+</section>
+<section id="malthusian-population-growth-model" class="level1">
+<h1>Malthusian population growth model</h1>
+<p>The simplest model assumes that the births and the deaths of population is linearly dependent on the population <img src="https://latex.codecogs.com/png.latex?P(t)">, so <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7Bbirths%7D%20=%20b%20%5Ccdot%20P(t)"> and deaths <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7Bdeaths%7D%20=%20d%20%5Ccdot%20P(t)">. Thus the population dynamics is given by</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7DP(t)%20=%20(b-d)P(t),%20~~%20P(0)=P_0"></p>
+<p>This can be solved the following way (we will denote <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7D%20P(t)"> by <img src="https://latex.codecogs.com/png.latex?P'(t)"> to make things easier to write.):</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%5Cbegin%7Bsplit%7D%0A%20%20%20%20&amp;%20P'(t)%20=%20(b-d)%20P(t)%20%5C%5C%0A%5Ciff%20&amp;%20%5Cfrac%7BP'(t)%7D%7BP(t)%7D%20=%20(b-d)%20%5C%5C%0A%5Ciff%20&amp;%20%5Cfrac%7Bd%7D%7Bdt%7D(%5Cln(P(t)))%20=%20(b-d)%20%5C%5C%0A%5Ciff%20&amp;%20%5Cln(P(t))%20=%20(b-d)t%20+%20C%20%5C%5C%0A%5Ciff%20&amp;%20P(t)%20=%20e%5EC%20e%5E%7B(b-d)t%7D%20=%20A%20e%5E%7B(b-d)t%7D%0A%5Cend%7Bsplit%7D%0A%5Cend%7Bequation%7D">
+<p>where we have used the Theorem 1. The constant <img src="https://latex.codecogs.com/png.latex?A"> can be determined by setting <img src="https://latex.codecogs.com/png.latex?t=%200"> to <img src="https://latex.codecogs.com/png.latex?P(t)=%20A%20e%5E%7B(b-d)%7Dt"> and thus obtaining <img src="https://latex.codecogs.com/png.latex?A%20=%20P_0">.</p>
+<p>The population that follows Malthusian growth model either growths indefinitely and rapidly or decreases to 0 quickly. The infinite growth isn’t very realistic since resources would run out. In the logistic model, there is a way to model the environmental capacity.</p>
+</section>
+<section id="logistic-growth-model" class="level1">
+<h1>Logistic growth model</h1>
+<p>The logistic growth model is the following dynamical law</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Clabel%7Bcontinuous_logistic_model%7D%0A%20%20%20%20N'(t)%20=%20r%20N(t)%20(1-%5Cfrac%7BN(t)%7D%7BK%7D),%20~~%20N(0)%20=%20N_0%0A%5Cend%7Bequation%7D">
+<p>where <img src="https://latex.codecogs.com/png.latex?K"> is called environmental capacity of the system and the <img src="https://latex.codecogs.com/png.latex?r"> is a constant that determines growth rate in Malthusian sense. At small population sizes the model will behave like Malthusian growth model, but when the population grows the factor <img src="https://latex.codecogs.com/png.latex?(1-%20%5Cfrac%7BN(t)%7D%7BK%7D)"> will make the growth slower and slower. If the population start beyond environmental capacity, the factor <img src="https://latex.codecogs.com/png.latex?(1-%20%5Cfrac%7BN(t)%7D%7BK%7D)"> will be negative and the population will decrease. When population is at the environmental capacity <img src="https://latex.codecogs.com/png.latex?P(t)%20=%20K"> the population will be stable (and moreover, that point is an attractor of the system).</p>
+<p>The solution of logistic model is the following</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Clabel%7Bcontinuous_logistic_solution%7D%0A%20%20N(t)%20=%20%5Cfrac%7BN_0%20K%20e%5E%7Brt%7D%7D%7BK+%20N_0%20(e%5E%7Brt%7D%20-1)%7D.%20%20%20%0A%5Cend%7Bequation%7D">
+<p>Let’s show this and start by rewriting the differential equation as</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Cfrac%7BK%20N'(t)%7D%7BN(t)(K%20-%20N(t))%7D%20=%20r.%0A%5Cend%7Bequation%7D">
+<p>If we can find a partial fraction decomposition in form of</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20KN'(t)(%5Cfrac%7BA%7D%7BN(t)%7D%20+%20%5Cfrac%7BB%7D%7BK-N(t)%7D)%0A%5Cend%7Bequation%7D">
+<p>for the left hand side, we obtain something that we can integrate. By doing standard partial fraction calculations, we obtain that <img src="https://latex.codecogs.com/png.latex?A=B=%5Cfrac%7B1%7D%7BK%7D">, so the equation takes the form</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Cfrac%7BN'(t)%7D%7BN(t)%7D%20+%20%5Cfrac%7BN'(t)%7D%7BK-N(t)%7D%20=%20r.%0A%5Cend%7Bequation%7D">
+<p>We observe that this is equal to</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Cfrac%7Bd%7D%7Bdt%7D(%5Cln%20N(t)%20-%20%5Cln%20(K-N(t)))%20=%20r.%0A%5Cend%7Bequation%7D">
+<p>By using the Theorem 1 and rules of logarithms, we get</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Cln%20(%5Cfrac%7BN(t)%7D%7BK-N(t)%7D)%20=%20rt%20+%20C%20"> so with <img src="https://latex.codecogs.com/png.latex?A%20=%20e%5EC"></p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Clabel%7Beq_for_A_logistic%7D%0A%20%20%20%20%5Cfrac%7BN(t)%7D%7BK-N(t)%7D%20=%20A%20e%5E%7Brt%7D%0A%5Cend%7Bequation%7D">
+<p>and thus</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20N(t)%20=%20%5Cfrac%7BAK%20e%5E%7Brt%7D%7D%7B1+A%20e%5E%7Brt%7D%7D.%0A%5Cend%7Bequation%7D">
+<p>This looks different from the claim, but when we use initial condition and the equation <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BN(t)%7D%7BK-N(t)%7D%20=%20A%20e%5E%7Brt%7D"> to solve A, we obtain</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20N(t)%20=%20%5Cfrac%7BKN_0%20e%5E%7Brt%7D%7D%7B(K-N_0)%20(1+%20%5Cfrac%7BN_0%7D%7BK-N_0%7D%20e%5E%7Brt%7D)%7D%20=%20%5Cfrac%7BKN_0%20e%5E%7Brt%7D%7D%7B(K%20-%20N_0%20+%20N_0%20e%5E%7Brt%7D)%7D%20=%20%20%5Cfrac%7BKN_0%20e%5E%7Brt%7D%7D%7BK%20+%20N_0%20(e%5E%7Brt%7D%20-%201)%7D%0A%5Cend%7Bequation%7D">
+<p>which is same as what we claimed.</p>
+</section>
+<section id="gompertz-growth-model" class="level1">
+<h1>Gompertz growth model</h1>
+<p>There are an another way to modify the logistic population model. In the logistic model, the damping factor, <img src="https://latex.codecogs.com/png.latex?(1-N/K)"> is linearly dependent on <img src="https://latex.codecogs.com/png.latex?N(t)">. In Gompertz model, the damping factor is chosen to be logarithmically dependent <img src="https://latex.codecogs.com/png.latex?%5Cln(%5Cfrac%7BK%7D%7BN(t)%7D)%20=%20%5Cln(K)%20-%20%5Cln(N(t))">. The model will follow exponential growth longer than logistic model. The evolution equation of the Gompertz model is the following</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20N'(t)%20=%20r%20N(t)%5Cln(%5Cfrac%7BK%7D%7BN(t)%7D)%20,%20~~%20N(0)%20=%20N_0.%0A%5Cend%7Bequation%7D">
+<p>This can be solved analytically. So let’s do that. Let’s us start by writing equation as follows</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Cfrac%7B%5Cfrac%7BN'(t)%7D%7BN(t)%7D%7D%7B%20%5Cln(K)%20-%20%5Cln%20(N(t))%7D%20=r.%0A%5Cend%7Bequation%7D">
+<p>This can be seen as a following derivative</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20-%5Cfrac%7Bd%7D%7Bdt%7D%5Cln%20(%5Cln%20(K)%20-%20%5Cln%20(N(t))))%20=%20r.%0A%5Cend%7Bequation%7D">
+<p>In same way as previously, we apply the Theorem 1 to get</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Cln%20(%5Cln(K)%20-%20%5Cln(N(t)))%20=%20-rt%20+%20C.%0A%5Cend%7Bequation%7D">
+<p>When we apply exponential function to this and move terms, we get</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20%5Clabel%7BGompertz_D%7D%0A%20%20%20%20%5Cln(N(t))%20=%20%5Cln(K)%20-%20e%5E%7B-rt%20+%20C%7D%0A%5Cend%7Bequation%7D">
+<p>and thus</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20N(t)%20=%20K%20e%5E%7B-%20e%5ECe%5E%7B-rt%7D%7D.%0A%5Cend%7Bequation%7D">
+<p>The <img src="https://latex.codecogs.com/png.latex?e%5EC"> can be calculated using initial value and using the equation <img src="https://latex.codecogs.com/png.latex?%5Cln(N(t))%20=%20%5Cln(K)%20-%20e%5E%7B-rt%20+%20C%7D"> and obtaining <img src="https://latex.codecogs.com/png.latex?e%5EC%20=%20%5Cln(%5Cfrac%7BK%7D%7BN_0%7D)">. So the solution is</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20N(t)%20=%20K%20e%5E%7B-%5Cln(%5Cfrac%7BK%7D%7BN_0%7D)e%5E%7B-rt%7D%7D.%0A%5Cend%7Bequation%7D">
+<p>This model converges very quickly to the environmental capacity level.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Mathematical biology</category>
+  <guid>https://vpumath.github.io/blog/posts/Analytically_solvable_single_species_population_models_part_1/</guid>
+  <pubDate>Sat, 15 Nov 2025 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Bayes’ Theorem says that you are unlikely to have that rare disease that you googled</title>
   <dc:creator>Veli-Pekka Uusluoto</dc:creator>
