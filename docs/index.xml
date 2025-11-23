@@ -5,12 +5,59 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>Math blog</title>
+<title>Mathematical methods and models blog</title>
 <link>https://vpumath.github.io/blog/</link>
 <atom:link href="https://vpumath.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
-<description>A math blog</description>
+<description>A blog about mathematical methods and models</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Sat, 15 Nov 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 22 Nov 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Pearl removal process problem</title>
+  <dc:creator>Veli-Pekka Uusluoto</dc:creator>
+  <link>https://vpumath.github.io/blog/posts/Pearl_removal_process_problem/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="hidden">
+
+</div>
+<p>One of my friends told me about following problem: Let’s study the following pearl removal process: There are <img src="https://latex.codecogs.com/png.latex?N"> pearls that forms a circle. Every pearl is numbered <img src="https://latex.codecogs.com/png.latex?1,2,%5Cdots,%20N"> (given a tag) starting from some pearl. Starting from first pearl remove the next pearl. Go to the next pearl that isn’t removed and remove the pearl after that. Repeat this process until there is only one pearl left.</p>
+<p><strong>Question:</strong> If there are <img src="https://latex.codecogs.com/png.latex?N"> pearls and the above removal process is applied, what pearl is the last one remaining (what is its tag)?</p>
+<p>Here is how I solved that problem. The solution technique came into my mind from times when I learned about Fast Fourier Transforms and Cooley-Tukey algorithm.</p>
+<p>We can study this process in rounds: At start of the process we have list of pearls <img src="https://latex.codecogs.com/png.latex?L_0%20=%20(1,2,3,%5Cdots,N)">. After each round, we can give a pearl a new tag and we get a new starting list. The list <img src="https://latex.codecogs.com/png.latex?L_k%20=%20(1,2,3,%5Cdots,N_k)"> means the numbering of the pearls after <img src="https://latex.codecogs.com/png.latex?k"> laps. At each round, the even numbered pearls are removed. Furthermore, if the number of pearls is odd, the first pearl is removed as well. In even case, the first pearl continues to the next list and start the process again.</p>
+<p>We can write odd numbers as <img src="https://latex.codecogs.com/png.latex?2k-1"> for some <img src="https://latex.codecogs.com/png.latex?k"> (we have used minus sign instead of plus sign to get <img src="https://latex.codecogs.com/png.latex?k=1"> to match with <img src="https://latex.codecogs.com/png.latex?1">). In the case when there are even number of pearls, the pearl’s <img src="https://latex.codecogs.com/png.latex?2k-1"> new tag will be <img src="https://latex.codecogs.com/png.latex?k"> and to the other direction: The previous tag of pearl <img src="https://latex.codecogs.com/png.latex?k"> is <img src="https://latex.codecogs.com/png.latex?2k-1">. In the odd case, the pearl’s <img src="https://latex.codecogs.com/png.latex?2k-1"> new tag is <img src="https://latex.codecogs.com/png.latex?k-1"> (the numbering is shifted by -1 since the first pearl is removed). The previous tag of pearl’s <img src="https://latex.codecogs.com/png.latex?k"> is <img src="https://latex.codecogs.com/png.latex?2(k+1)-1%20=%202k+1">. Let’s define two functions:</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Beqnarray%7D%0A%20%20%20%20%5Clabel%7Bbw_fn%7D%0A%20%20%20%20e(k)%20&amp;=%202k-1%20%5C%5C%0A%20%20%20%20o(k)%20&amp;=%202k+1%0A%5Cend%7Beqnarray%7D">
+<p>We need these functions later. Now we can study the length of removal process.</p>
+<p><strong>Lemma 1:</strong> Let’s write N in the binary</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20N%20=%20%5Csum_%7Bi=0%7D%5E%7Bm%7D%20a_i%202%5Ei%0A%5Cend%7Bequation%7D"> where <img src="https://latex.codecogs.com/png.latex?a_i%20%5Cin%20%5C%7B0,1%5C%7D"> and <img src="https://latex.codecogs.com/png.latex?a_m=1">. The length of the removal process is <img src="https://latex.codecogs.com/png.latex?m"> rounds.</p>
+<p><strong>Proof:</strong> Let <img src="https://latex.codecogs.com/png.latex?N_k"> denote the size of <img src="https://latex.codecogs.com/png.latex?L_k">. In the case when <img src="https://latex.codecogs.com/png.latex?N_k"> is even, the <img src="https://latex.codecogs.com/png.latex?L_%7Bk+1%7D"> has half as many elements, so we have <img src="https://latex.codecogs.com/png.latex?N_%7Bk+1%7D%20=%5Cfrac%7BN_k%7D%7B2%7D">. In odd case, let <img src="https://latex.codecogs.com/png.latex?N_k%20=%202L%20+1">, we can divide the list into two parts <img src="https://latex.codecogs.com/png.latex?(1,2,3,%5Cdots,2L)"> and <img src="https://latex.codecogs.com/png.latex?(2L+1)">. We can see that in the first part <img src="https://latex.codecogs.com/png.latex?L"> pearls are removed and the last pearl removes the first pearl and so <img src="https://latex.codecogs.com/png.latex?N_%7Bk+1%7D%20=%20%5Cfrac%7BN_k-1%7D%7B2%7D">. In both cases, the <img src="https://latex.codecogs.com/png.latex?N_%7Bk+1%7D"> is obtained by chopping off the first digit of <img src="https://latex.codecogs.com/png.latex?N_k"> written in binary. Thus we can see that the removal process takes <img src="https://latex.codecogs.com/png.latex?m"> rounds.</p>
+<p>From that proof we can see that <img src="https://latex.codecogs.com/png.latex?a_k"> determines the parity of <img src="https://latex.codecogs.com/png.latex?N_k"> and we have <img src="https://latex.codecogs.com/png.latex?N_k%20%5Cequiv%20a_k%20%20%5Cmod%202">.</p>
+<p>To the solve original number tag of last pearl, we can work backwardly. In the end, the pearl have the number tag <img src="https://latex.codecogs.com/png.latex?1">. Using functions <img src="https://latex.codecogs.com/png.latex?e(x)"> and <img src="https://latex.codecogs.com/png.latex?o(x)">, we can calculate the tag <img src="https://latex.codecogs.com/png.latex?T_%7Bk-1%7D"> in the list <img src="https://latex.codecogs.com/png.latex?L_%7Bk-1%7D"> when we know the tag <img src="https://latex.codecogs.com/png.latex?T_k"> in the list <img src="https://latex.codecogs.com/png.latex?L_k">. If <img src="https://latex.codecogs.com/png.latex?N_%7Bk-1%7D"> ( i.e.&nbsp;<img src="https://latex.codecogs.com/png.latex?a_%7Bk%7D">) is even, then</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20T_%7Bk-1%7D%20=%20e(T_k)%20=%202T_k%20-1%0A%5Cend%7Bequation%7D">
+<p>and if <img src="https://latex.codecogs.com/png.latex?N_%7Bk-1%7D"> ( i.e.&nbsp;<img src="https://latex.codecogs.com/png.latex?a_%7Bk-1%7D">) is odd, then</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20T_%7Bk-1%7D%20=%20o(T_k)%20=%202T_k%20+1%0A%5Cend%7Bequation%7D%20">
+<p>This gives the answer to the problem. However we can find a exact formula for <img src="https://latex.codecogs.com/png.latex?T_0">. To show this, we start by studying special cases. When <img src="https://latex.codecogs.com/png.latex?T_k%20=%201">, we have <img src="https://latex.codecogs.com/png.latex?e(T_k)%20=%201"> and <img src="https://latex.codecogs.com/png.latex?o(T_k)%20=%2011_2"> (written in binary). Now assume that <img src="https://latex.codecogs.com/png.latex?T_k%20=%20%5Csum_%7Bi=1%7D%5E%7Bj%7D%20b_i%202%5Ei%20+%201"> for some <img src="https://latex.codecogs.com/png.latex?j%3E=1">. When <img src="https://latex.codecogs.com/png.latex?a_%7Bk-1%7D%20=%200"> (<img src="https://latex.codecogs.com/png.latex?N_%7Bk-1%7D"> is even), we have</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20T_%7Bk-1%7D%20=%20e(T_k)%20=%202(%5Csum_%7Bi=1%7D%5E%7Bj%7D%20b_i%202%5Ei%20+%201)%20-%201%20=%20%20%5Csum_%7Bi=1%7D%5E%7Bj%7D%20b_i%202%5E%7Bi+1%7D%20+%201.%0A%5Cend%7Bequation%7D">
+<p>From this form we can deduce that when <img src="https://latex.codecogs.com/png.latex?a_%7Bk-1%7D=0"> we have simply added a zero next between the first and the second digit of <img src="https://latex.codecogs.com/png.latex?T_k"> when written in binary.</p>
+<p>When <img src="https://latex.codecogs.com/png.latex?a_%7Bk-1%7D"> (<img src="https://latex.codecogs.com/png.latex?N_%7Bk-1%7D">) is odd, we can write the following</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20T_%7Bk-1%7D%20=%20o(T_k)%20=%202(%5Csum_%7Bi=1%7D%5E%7Bj%7D%20b_i%202%5Ei%20+%201)%20+1%20=%20%5Csum_%7Bi=1%7D%5E%7Bj%7D%20b_i%202%5E%7Bi+1%7D%20+%202%20+%201.%0A%5Cend%7Bequation%7D">
+<p>So when <img src="https://latex.codecogs.com/png.latex?a_%7Bk-1%7D=1">, the function <img src="https://latex.codecogs.com/png.latex?o(x)"> adds a number one between the first and the second digit of <img src="https://latex.codecogs.com/png.latex?T_k"> when written in binary. Both functions behaves similarly, they add the <img src="https://latex.codecogs.com/png.latex?a_%7Bk-1%7D"> between first and the second digit of <img src="https://latex.codecogs.com/png.latex?T_k">.</p>
+<p>Now we can discuss how we obtain <img src="https://latex.codecogs.com/png.latex?T_0">. Recall that we denoted <img src="https://latex.codecogs.com/png.latex?N%20=%20%5Csum_%7Bi=0%7D%5E%7Bm%7D%20a_i%202%5Ei"> When we work backwards, we notice that if <img src="https://latex.codecogs.com/png.latex?a_%7Bm-1%7D%5C%20=%200"> then <img src="https://latex.codecogs.com/png.latex?T_%7Bm-1%7D%20=%20T_m%20=%201">. Similarly for each zero before that until we bump into some <img src="https://latex.codecogs.com/png.latex?a_s"> which is <img src="https://latex.codecogs.com/png.latex?1">. Formally we can define <img src="https://latex.codecogs.com/png.latex?s"> as <img src="https://latex.codecogs.com/png.latex?%5Cmax%20%5C%7B%20i%20~%20%7C~%20a_i%20=%201,%20i%20%3C%20m%20%5C%7D">, if there is not such <img src="https://latex.codecogs.com/png.latex?s"> then we obtain that <img src="https://latex.codecogs.com/png.latex?T_0%20=%201">. From above discussion and with knowledge that <img src="https://latex.codecogs.com/png.latex?o(1)%20=%2011_2">, we can deduce that we add the rest of the binary digits to the left side of the digit 1 starting from <img src="https://latex.codecogs.com/png.latex?a_s">. All in all, we can deduce that</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bequation%7D%0A%20%20%20%20T_0%20%20=%202%20%5Csum_%7Bi=0%7D%5E%7Bs%7D%20a_i%202%5Ei%20+%201%20%20%0A%5Cend%7Bequation%7D">
+<p>where <img src="https://latex.codecogs.com/png.latex?s%20=%20%5Cmax%20(%5C%7B%20i%20~%7C~%20a_i%20=%201,%20i%20%3C%20m%20%5C%7D%20%5Ccup%20%5C%7B0%5C%7D)">. This can be written also in the following form:</p>
+<p><img src="https://latex.codecogs.com/png.latex?T_0%20=%202%20(%5Csum_%7Bi=0%7D%5E%7Bm%7D%20a_i%202%5Ei%20-%202%5Em)%20+1"></p>
+<p>There are also other ways to solve this problem (at least one other method).</p>
+
+
+
+ ]]></description>
+  <category>Problem solving</category>
+  <guid>https://vpumath.github.io/blog/posts/Pearl_removal_process_problem/</guid>
+  <pubDate>Sat, 22 Nov 2025 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Analytically solvable single species population models part 1</title>
   <dc:creator>Veli-Pekka Uusluoto</dc:creator>

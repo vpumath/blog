@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Veli-Pekka Uusluoto">
+<meta name="dcterms.date" content="2025-11-23">
 
-<title>Blog – Mathematical methods and models blog</title>
+<title>Pearl removal process problem – Mathematical methods and models blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +25,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a26421d82f52bf2d5e6476a19b1921eb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a26421d82f52bf2d5e6476a19b1921eb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script type="text/javascript">
   window.MathJax = {
     loader: {
@@ -142,19 +113,19 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Mathematical methods and models blog" href="index.xml" data-external="1"></head>
+<link rel="stylesheet" href="../../styles.css">
+</head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Mathematical methods and models blog</span>
     </a>
   </div>
@@ -165,7 +136,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -178,192 +149,95 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Pearl removal process problem</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Problem solving</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Veli-Pekka Uusluoto </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 23, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="TWF0aGVtYXRpY2FsJTIwYmlvbG9neQ==">Mathematical biology <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0aGVtYXRpY2FsJTIwbW9kZWxsaW5n">Mathematical modelling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvYmFiaWxpdHk=">Probability <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHJvYmxlbSUyMHNvbHZpbmc=">Problem solving <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<div class="hidden">
+
+</div>
+<p>One of my friends told me about following problem: Let’s study the following pearl removal process: There are <span class="math inline">\(N\)</span> pearls that forms a circle. Every pearl is numbered <span class="math inline">\(1,2,\dots, N\)</span> (given a tag) starting from some pearl. Starting from first pearl remove the next pearl. Go to the next pearl that isn’t removed and remove the pearl after that. Repeat this process until there is only one pearl left.</p>
+<p><strong>Question:</strong> If there are <span class="math inline">\(N\)</span> pearls and the above removal process is applied, what pearl is the last one remaining (what is its tag)?</p>
+<p>Here is how I solved that problem. The solution technique came into my mind from times when I learned about Fast Fourier Transforms and Cooley-Tukey algorithm.</p>
+<p>We can study this process in rounds: At start of the process we have list of pearls <span class="math inline">\(L_0 = (1,2,3,\dots,N)\)</span>. After each round, we can give a pearl a new tag and we get a new starting list. The list <span class="math inline">\(L_k = (1,2,3,\dots,N_k)\)</span> means the numbering of the pearls after <span class="math inline">\(k\)</span> laps. At each round, the even numbered pearls are removed. Furthermore, if the number of pearls is odd, the first pearl is removed as well. In even case, the first pearl continues to the next list and start the process again.</p>
+<p>We can write odd numbers as <span class="math inline">\(2k-1\)</span> for some <span class="math inline">\(k\)</span> (we have used minus sign instead of plus sign to get <span class="math inline">\(k=1\)</span> to match with <span class="math inline">\(1\)</span>). In the case when there are even number of pearls, the pearl’s <span class="math inline">\(2k-1\)</span> new tag will be <span class="math inline">\(k\)</span> and to the other direction: The previous tag of pearl <span class="math inline">\(k\)</span> is <span class="math inline">\(2k-1\)</span>. In the odd case, the pearl’s <span class="math inline">\(2k-1\)</span> new tag is <span class="math inline">\(k-1\)</span> (the numbering is shifted by -1 since the first pearl is removed). The previous tag of pearl’s <span class="math inline">\(k\)</span> is <span class="math inline">\(2(k+1)-1 = 2k+1\)</span>. Let’s define two functions:</p>
+<span class="math display">\[\begin{eqnarray}
+    \label{bw_fn}
+    e(k) &amp;= 2k-1 \\
+    o(k) &amp;= 2k+1
+\end{eqnarray}\]</span>
+<p>We need these functions later. Now we can study the length of removal process.</p>
+<p><strong>Lemma 1:</strong> Let’s write N in the binary</p>
+<p><span class="math display">\[\begin{equation}
+    N = \sum_{i=0}^{m} a_i 2^i
+\end{equation}\]</span> where <span class="math inline">\(a_i \in \{0,1\}\)</span> and <span class="math inline">\(a_m=1\)</span>. The length of the removal process is <span class="math inline">\(m\)</span> rounds.</p>
+<p><strong>Proof:</strong> Let <span class="math inline">\(N_k\)</span> denote the size of <span class="math inline">\(L_k\)</span>. In the case when <span class="math inline">\(N_k\)</span> is even, the <span class="math inline">\(L_{k+1}\)</span> has half as many elements, so we have <span class="math inline">\(N_{k+1} =\frac{N_k}{2}\)</span>. In odd case, let <span class="math inline">\(N_k = 2L +1\)</span>, we can divide the list into two parts <span class="math inline">\((1,2,3,\dots,2L)\)</span> and <span class="math inline">\((2L+1)\)</span>. We can see that in the first part <span class="math inline">\(L\)</span> pearls are removed and the last pearl removes the first pearl and so <span class="math inline">\(N_{k+1} = \frac{N_k-1}{2}\)</span>. In both cases, the <span class="math inline">\(N_{k+1}\)</span> is obtained by chopping off the first digit of <span class="math inline">\(N_k\)</span> written in binary. Thus we can see that the removal process takes <span class="math inline">\(m\)</span> rounds.</p>
+<p>From that proof we can see that <span class="math inline">\(a_k\)</span> determines the parity of <span class="math inline">\(N_k\)</span> and we have <span class="math inline">\(N_k \equiv a_k  \mod 2\)</span>.</p>
+<p>To the solve original number tag of last pearl, we can work backwardly. In the end, the pearl have the number tag <span class="math inline">\(1\)</span>. Using functions <span class="math inline">\(e(x)\)</span> and <span class="math inline">\(o(x)\)</span>, we can calculate the tag <span class="math inline">\(T_{k-1}\)</span> in the list <span class="math inline">\(L_{k-1}\)</span> when we know the tag <span class="math inline">\(T_k\)</span> in the list <span class="math inline">\(L_k\)</span>. If <span class="math inline">\(N_{k-1}\)</span> ( i.e.&nbsp;<span class="math inline">\(a_{k}\)</span>) is even, then</p>
+<span class="math display">\[\begin{equation}
+    T_{k-1} = e(T_k) = 2T_k -1
+\end{equation}\]</span>
+<p>and if <span class="math inline">\(N_{k-1}\)</span> ( i.e.&nbsp;<span class="math inline">\(a_{k-1}\)</span>) is odd, then</p>
+<span class="math display">\[\begin{equation}
+    T_{k-1} = o(T_k) = 2T_k +1
+\end{equation} \]</span>
+<p>This gives the answer to the problem. However we can find a exact formula for <span class="math inline">\(T_0\)</span>. To show this, we start by studying special cases. When <span class="math inline">\(T_k = 1\)</span>, we have <span class="math inline">\(e(T_k) = 1\)</span> and <span class="math inline">\(o(T_k) = 11_2\)</span> (written in binary). Now assume that <span class="math inline">\(T_k = \sum_{i=1}^{j} b_i 2^i + 1\)</span> for some <span class="math inline">\(j&gt;=1\)</span>. When <span class="math inline">\(a_{k-1} = 0\)</span> (<span class="math inline">\(N_{k-1}\)</span> is even), we have</p>
+<span class="math display">\[\begin{equation}
+    T_{k-1} = e(T_k) = 2(\sum_{i=1}^{j} b_i 2^i + 1) - 1 =  \sum_{i=1}^{j} b_i 2^{i+1} + 1.
+\end{equation}\]</span>
+<p>From this form we can deduce that when <span class="math inline">\(a_{k-1}=0\)</span> we have simply added a zero next between the first and the second digit of <span class="math inline">\(T_k\)</span> when written in binary.</p>
+<p>When <span class="math inline">\(a_{k-1}\)</span> (<span class="math inline">\(N_{k-1}\)</span>) is odd, we can write the following</p>
+<span class="math display">\[\begin{equation}
+    T_{k-1} = o(T_k) = 2(\sum_{i=1}^{j} b_i 2^i + 1) +1 = \sum_{i=1}^{j} b_i 2^{i+1} + 2 + 1.
+\end{equation}\]</span>
+<p>So when <span class="math inline">\(a_{k-1}=1\)</span>, the function <span class="math inline">\(o(x)\)</span> adds a number one between the first and the second digit of <span class="math inline">\(T_k\)</span> when written in binary. Both functions behaves similarly, they add the <span class="math inline">\(a_{k-1}\)</span> between first and the second digit of <span class="math inline">\(T_k\)</span>.</p>
+<p>Now we can discuss how we obtain <span class="math inline">\(T_0\)</span>. Recall that we denoted <span class="math inline">\(N = \sum_{i=0}^{m} a_i 2^i\)</span> When we work backwards, we notice that if <span class="math inline">\(a_{m-1}\ = 0\)</span> then <span class="math inline">\(T_{m-1} = T_m = 1\)</span>. Similarly for each zero before that until we bump into some <span class="math inline">\(a_s\)</span> which is <span class="math inline">\(1\)</span>. Formally we can define <span class="math inline">\(s\)</span> as <span class="math inline">\(\max \{ i ~ |~ a_i = 1, i &lt; m \}\)</span>, if there is not such <span class="math inline">\(s\)</span> then we obtain that <span class="math inline">\(T_0 = 1\)</span>. From above discussion and with knowledge that <span class="math inline">\(o(1) = 11_2\)</span>, we can deduce that we add the rest of the binary digits to the left side of the digit 1 starting from <span class="math inline">\(a_s\)</span>. All in all, we can deduce that</p>
+<span class="math display">\[\begin{equation}
+    T_0  = 2 \sum_{i=0}^{s} a_i 2^i + 1  
+\end{equation}\]</span>
+<p>where <span class="math inline">\(s = \max (\{ i ~|~ a_i = 1, i &lt; m \} \cup \{0\})\)</span>. This can be written also in the following form:</p>
+<p><span class="math display">\[T_0 = 2 (\sum_{i=0}^{m} a_i 2^i - 2^m) +1\]</span></p>
+<p>There are also other ways to solve this problem (at least one other method).</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UHJvYmxlbSUyMHNvbHZpbmc=" data-listing-date-sort="1763848800000" data-listing-file-modified-sort="1763934571771" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="940">
-<div class="thumbnail"><a href="./posts/Pearl_removal_process_problem/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Pearl_removal_process_problem/index.html" class="no-external">Pearl removal process problem</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJvYmxlbSUyMHNvbHZpbmc='); return false;">Problem solving</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/Pearl_removal_process_problem/index.html" class="no-external">
-One of my friends told me about following problem: Let’s study the following pearl removal process: There are <span class="math inline">\(N\)</span> pearls that forms a circle. Every pearl is numbered <span class="math inline">\(1,2…</span>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/Pearl_removal_process_problem/index.html" class="no-external">
-<div class="listing-date">
-Nov 23, 2025
-</div>
-<div class="listing-author">
-Veli-Pekka Uusluoto
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TWF0aGVtYXRpY2FsJTIwYmlvbG9neQ==" data-listing-date-sort="1763244000000" data-listing-file-modified-sort="1763329938656" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1105">
-<div class="thumbnail"><a href="./posts/Analytically_solvable_single_species_population_models_part_1/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Analytically_solvable_single_species_population_models_part_1/index.html" class="no-external">Analytically solvable single species population models part 1</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0aGVtYXRpY2FsJTIwYmlvbG9neQ=='); return false;">Mathematical biology</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/Analytically_solvable_single_species_population_models_part_1/index.html" class="no-external">
-Mathematical biology is one of those topics that I want to learn so I will be writing about it. In this post, I will discuss shortly single species continuous population…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/Analytically_solvable_single_species_population_models_part_1/index.html" class="no-external">
-<div class="listing-date">
-Nov 16, 2025
-</div>
-<div class="listing-author">
-Veli-Pekka Uusluoto
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="UHJvYmFiaWxpdHk=" data-listing-date-sort="1762898400000" data-listing-file-modified-sort="1762994504383" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1720">
-<div class="thumbnail"><a href="./posts/Bayes_theorem_application/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Bayes_theorem_application/index.html" class="no-external">Bayes’ Theorem says that you are unlikely to have that rare disease that you googled</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJvYmFiaWxpdHk='); return false;">Probability</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/Bayes_theorem_application/index.html" class="no-external">
-I guess that everyone of us have sometimes googled their symptoms and found that they match to some horrible rare disease and then thought “I am screwed”. Now assuming that…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/Bayes_theorem_application/index.html" class="no-external">
-<div class="listing-date">
-Nov 12, 2025
-</div>
-<div class="listing-author">
-Veli-Pekka Uusluoto
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="TWF0aGVtYXRpY2FsJTIwbW9kZWxsaW5n" data-listing-date-sort="1762207200000" data-listing-file-modified-sort="1762291147109" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="923">
-<div class="thumbnail"><a href="./posts/Finding_multiple_mathematical_models_for_same_phenomenon_is_a_good_thing/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Finding_multiple_mathematical_models_for_same_phenomenon_is_a_good_thing/index.html" class="no-external">Finding multiple mathematical models for same phenomenon is a good thing</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0aGVtYXRpY2FsJTIwbW9kZWxsaW5n'); return false;">Mathematical modelling</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/Finding_multiple_mathematical_models_for_same_phenomenon_is_a_good_thing/index.html" class="no-external">
-Finding an unifying collection of equations and principles that would explain everything in the universe under single compatible framework would be a holy grail for…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/Finding_multiple_mathematical_models_for_same_phenomenon_is_a_good_thing/index.html" class="no-external">
-<div class="listing-date">
-Nov 4, 2025
-</div>
-<div class="listing-author">
-Veli-Pekka Uusluoto
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="UHJvYmFiaWxpdHk=" data-listing-date-sort="1761602400000" data-listing-file-modified-sort="1762720596542" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2171">
-<div class="thumbnail"><a href="./posts/EV_doesnt_always_tell_whole_story/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/EV_doesnt_always_tell_whole_story/index.html" class="no-external">Expected value does not always tell the whole story</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJvYmFiaWxpdHk='); return false;">Probability</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/EV_doesnt_always_tell_whole_story/index.html" class="no-external">
-In poker, there is a rule of thumb that you should play plus EV (Expected Value) lines and avoid negative EV lines and indeed it is important to play more plus EV lines than…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/EV_doesnt_always_tell_whole_story/index.html" class="no-external">
-<div class="listing-date">
-Oct 28, 2025
-</div>
-<div class="listing-author">
-Veli-Pekka Uusluoto
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
